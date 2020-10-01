@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>6f1c1ad3-f319-4f0f-9827-cfaddf1b63c6</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>Luna.Agent</Name>
+    <RootNamespace>Luna.Agent</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <Environment></Environment>
+    <WebBrowserPort>23456</WebBrowserPort>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Agent\Auth\AuthHelper.py" />
+    <Compile Include="Agent\Auth\test.py" />
+    <Compile Include="Agent\AzureML\AzureMLUtils.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\AzureML\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Code\CodeUtils.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Code\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Data\Offer.py" />
+    <Compile Include="Agent\Data\KeyVaultHelper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Data\Publisher.py" />
+    <Compile Include="Agent\Data\AlchemyEncoder.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Data\AgentUser.py" />
+    <Compile Include="Agent\Data\AMLWorkspace.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Data\APISubscription.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Data\APIVersion.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Data\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Exception\LunaExceptions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Mgmt\AgentManager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Mgmt\ControlPlane.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Agent\Mgmt\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="config.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="runserver.py" />
+    <Compile Include="Agent\__init__.py" />
+    <Compile Include="Agent\views.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Agent\" />
+    <Folder Include="Agent\Auth\" />
+    <Folder Include="Agent\Code\" />
+    <Folder Include="Agent\AzureML\" />
+    <Folder Include="Agent\ML\" />
+    <Folder Include="Agent\Mgmt\" />
+    <Folder Include="Agent\Data\" />
+    <Folder Include="Agent\Exception\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lunaagent.pubxml" />
+    <Content Include=".dockerignore">
+      <SubType>Content</SubType>
+      <DependentUpon>Dockerfile</DependentUpon>
+    </Content>
+    <None Include="Dockerfile" />
+    <None Include="aigent-saas - Web Deploy.pubxml" />
+    <Content Include="web.config" />
+    <None Include="aigent - Web Deploy.pubxml" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.7</Version>
+      <Description>env (Python 3.7 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
